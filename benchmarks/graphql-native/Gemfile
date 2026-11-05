@@ -2,5 +2,5 @@ source "https://rubygems.org"
 
 gem "base64"
 gem "graphql"
-gem "graphql-c_parser"
+gem "graphql-c_parser", git: "https://github.com/thomasklemm/graphql-ruby", branch: "thomasklemm/c-parser-windows-token-names"
 gem "racc"
