@@ -6,11 +6,11 @@ ENV['DISABLE_DATABASE_ENVIRONMENT_CHECK'] = '1' # Benchmarks don't really have '
 Dir.chdir __dir__
 use_gemfile
 
-# A fixed clock, with nanoseconds like a real one, keeps the work independent of the date.
+# A fixed clock, 15 hours after the fixture's stories so every time window lists them, with nanoseconds like a real one.
 require 'active_support'
 require 'active_support/testing/time_helpers'
 extend ActiveSupport::Testing::TimeHelpers
-travel_to Time.utc(2026, 7, 1, 12, 0, 0, 123456.789r), with_usec: true
+travel_to Time.utc(2023, 7, 19, 1, 0, 0, 123456.789r), with_usec: true
 
 require_relative 'config/environment'
 require_relative "route_generator"
