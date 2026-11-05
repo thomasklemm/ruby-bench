@@ -18,7 +18,7 @@
 # Work per Ractor is fixed and independent of the Ractor count, so GC totals
 # scale with the number of workers and per-Ractor degradation is the signal.
 
-require_relative '../harness/loader'
+require_relative '../lib/harness/loader'
 
 class GCBalloon
   Record = Struct.new(:id, :head, :tail, :link)
@@ -55,7 +55,7 @@ class GCBalloon
 
   COLLECT_AT_LOW_WATER = ENV.fetch("RUBY_BENCH_BALLOON_COLLECT", "1") == "1"
 
-  LOCAL_MAJOR_ONLY = true
+  LOCAL_MAJOR_ONLY = GC.method(:start).parameters.include?([:key, :global])
 
   # One retained chunk. The strings and the blob are allocated before the
   # arrays that reference them, so marking has a graph to walk rather than a
